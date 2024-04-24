@@ -68,8 +68,7 @@ LIMIT 1;
 /*20*/ SELECT nombre, codigo_fabricante
 from producto
 where codigo_fabricante = 2;
-/*21*/
-
+/*21*/janjanxjanx
 
 
 
