@@ -73,4 +73,3 @@ CREATE TABLE Sales (
     FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
 );
 
-test
