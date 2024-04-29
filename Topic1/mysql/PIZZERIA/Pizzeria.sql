@@ -1,6 +1,3 @@
--- Create a new database 
-CREATE DATABASE Pizzeria;
-
 USE Pizzeria;
 
 CREATE TABLE Customers (
