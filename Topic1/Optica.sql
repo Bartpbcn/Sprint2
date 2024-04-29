@@ -11,7 +11,6 @@ CREATE TABLE Addresses (
 );
 
 -- Create table for Suppliers
-
 CREATE TABLE Suppliers (
     'SupplierID' INT AUTO_INCREMENT primary KEY,
     'Name' VARCHAR(255) NOT NULL,
