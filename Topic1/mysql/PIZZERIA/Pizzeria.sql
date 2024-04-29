@@ -1,6 +1,6 @@
 USE Pizzeria;
 
-CREATE TABLE Addresses(
+CREATE TABLE IF NOT EXISTS Addresses(
     AddressID INT AUTO_INCREMENT PRIMARY KEY,
     Street VARCHAR(255),
     Streetnumber INT,
@@ -12,7 +12,7 @@ CREATE TABLE Addresses(
     Country VARCHAR(100)
 );
 
-CREATE TABLE Customers (
+CREATE TABLE IF NOT EXISTS Customers (
     CustomerID INT AUTO_INCREMENT PRIMARY KEY,
     FirstName VARCHAR(100),
     LastName VARCHAR(100),
