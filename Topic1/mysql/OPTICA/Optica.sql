@@ -72,3 +72,5 @@ CREATE TABLE Sales (
     FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
     FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
 );
+
+test
