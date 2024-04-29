@@ -9,7 +9,7 @@ CREATE TABLE Customers (
     LastName VARCHAR(100),
     Telephone VARCHAR(15)
     AddressID INT,
-    FOREIGN KEY(AddressID INT) REFERENCES addresses(AddressID)
+    FOREIGN KEY(AddressID) REFERENCES addresses(AddressID)
 );
 CREATE TABLE Orders (
     OrderID INT AUTO_INCREMENT PRIMARY KEY,
