@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS Orders (
     TotalPrice DECIMAL(10,2),
     FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
-CREATE TABLE Products (
+CREATE TABLE IF NOT EXISTS Products (
     ProductID INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(100),
     Description TEXT,
@@ -51,14 +51,14 @@ CREATE TABLE IF NOT EXISTS Pizzas (
     PRIMARY KEY (ProductID, CategoryID)
 );
 
-CREATE TABLE Shops (
+CREATE TABLE IF NOT EXISTS Shops (
     ShopID INT AUTO_INCREMENT PRIMARY KEY,
     AddressID INT,
     FOREIGN KEY(AddressID) REFERENCES addresses(AddressID)
     
 );
 
-CREATE TABLE Employees (
+CREATE TABLE IF NOT EXISTS Employees (
     EmployeeID INT AUTO_INCREMENT PRIMARY KEY,
     FirstName VARCHAR(100),
     LastName VARCHAR(100),
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS Kitchenticket (
     PRIMARY KEY (OrderID, ProductID)
 );
 
-CREATE TABLE OrderDeliveries (
+CREATE TABLE IF NOT EXISTS OrderDeliveries (
     OrderID INT,
     EmployeeID INT,
     DeliveryDateTime DATETIME,
