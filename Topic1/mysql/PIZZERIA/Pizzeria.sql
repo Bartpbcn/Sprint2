@@ -1,4 +1,10 @@
+CREATE DATABASE IF NOT EXISTS Pizzeria;
 USE Pizzeria;
+
+CREATE TABLE IF NOT EXISTS Categories (
+    CategoryID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100)
+);
 
 CREATE TABLE IF NOT EXISTS Addresses (
     AddressID INT AUTO_INCREMENT PRIMARY KEY,
@@ -10,6 +16,13 @@ CREATE TABLE IF NOT EXISTS Addresses (
     City VARCHAR(100),
     Province VARCHAR(100),
     Country VARCHAR(100)
+);
+
+CREATE TABLE IF NOT EXISTS Shops (
+    ShopID INT AUTO_INCREMENT PRIMARY KEY,
+    AddressID INT,
+    FOREIGN KEY(AddressID) REFERENCES addresses(AddressID)
+    
 );
 
 CREATE TABLE IF NOT EXISTS Customers (
@@ -38,10 +51,6 @@ CREATE TABLE IF NOT EXISTS Products (
     FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
 );
 
-CREATE TABLE IF NOT EXISTS Categories (
-    CategoryID INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(100)
-);
 
 CREATE TABLE IF NOT EXISTS Pizzas (
     ProductID INT PRIMARY KEY,
@@ -50,12 +59,7 @@ CREATE TABLE IF NOT EXISTS Pizzas (
 
 );
 
-CREATE TABLE IF NOT EXISTS Shops (
-    ShopID INT AUTO_INCREMENT PRIMARY KEY,
-    AddressID INT,
-    FOREIGN KEY(AddressID) REFERENCES addresses(AddressID)
-    
-);
+
 
 CREATE TABLE IF NOT EXISTS Employees (
     EmployeeID INT AUTO_INCREMENT PRIMARY KEY,
@@ -76,8 +80,8 @@ CREATE TABLE IF NOT EXISTS Kitchenticket (
     Received_at TIMESTAMP,
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
     FOREIGN KEY (ProductID) REFERENCES Products(ProductID),
-    PRIMARY KEY (OrderID, ProductID)
-    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID),
+    PRIMARY KEY (OrderID, ProductID),
+    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
 );
 
 CREATE TABLE IF NOT EXISTS OrderDeliveries (
