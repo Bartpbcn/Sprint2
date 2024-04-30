@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS Products (
     ProductID INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(100),
     Description TEXT,
-    CategoryID INT,  -- Link to Categories table
+    CategoryID INT,
     ImageURL TEXT,
     Price DECIMAL(10,2),
     FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS Categories (
     CategoryID INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(100)
 );
+
 
 CREATE TABLE IF NOT EXISTS Pizzas (
     ProductID INT PRIMARY KEY,
