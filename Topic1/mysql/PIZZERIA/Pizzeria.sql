@@ -32,9 +32,10 @@ CREATE TABLE IF NOT EXISTS Products (
     ProductID INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(100),
     Description TEXT,
-    Category ENUM('pizza', 'hamburgers', 'drinks'),
+    CategoryID INT,  -- Link to Categories table
     ImageURL TEXT,
-    Price DECIMAL(10,2)
+    Price DECIMAL(10,2),
+    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
 );
 
 CREATE TABLE IF NOT EXISTS Categories (
@@ -43,12 +44,10 @@ CREATE TABLE IF NOT EXISTS Categories (
 );
 
 CREATE TABLE IF NOT EXISTS Pizzas (
-    ProductID INT,
-    CategoryID INT,
+    ProductID INT PRIMARY KEY,
     Name VARCHAR(50),
-    FOREIGN KEY (ProductID) REFERENCES Products(ProductID),
-    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID),
-    PRIMARY KEY (ProductID, CategoryID)
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+
 );
 
 CREATE TABLE IF NOT EXISTS Shops (
