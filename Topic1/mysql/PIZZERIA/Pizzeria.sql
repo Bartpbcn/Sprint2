@@ -22,11 +22,13 @@ CREATE TABLE IF NOT EXISTS Customers (
 );
 CREATE TABLE Orders (
     OrderID INT AUTO_INCREMENT PRIMARY KEY,
-    CustomerID INT,
+    ProductID INT PRIMARY KEY,
+    Quantity INT,
     OrderDateTime DATETIME,
     DeliveryType ENUM('home_delivery', 'pickup'),
     TotalPrice DECIMAL(10,2),
-    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID),
 );
 
 CREATE TABLE Products (
@@ -38,12 +40,18 @@ CREATE TABLE Products (
     Price DECIMAL(10,2)
 );
 
-CREATE TABLE Pizzas (
-    ProductID INT,
-    CategoryID INT,
+CREATE TABLE IF NOT EXISTS Categories (
+    CategoryID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE IF NOT EXISTS Pizzas (
+    ProductID INT PRIMARY KEY,
+    CategoryID INT PRIMARY KEY,
     Name VARCHAR(50),
     FOREIGN KEY (ProductID) REFERENCES Products(ProductID),
-    PRIMARY KEY (ProductID, CategoryID)
+    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
+
 );
 
 CREATE TABLE Shops (
@@ -62,6 +70,16 @@ CREATE TABLE Employees (
     Function ENUM('cook', 'delivery'),
     ShopID INT,
     FOREIGN KEY (ShopID) REFERENCES Shops(ShopID)
+);
+
+CREATE TABLE IF NOT EXISTS Kitchenticket (
+    OrderID INT,
+    ProductID INT,
+    Quantity INT,
+    Received_at TIMESTAMP,
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID),
+    PRIMARY KEY (OrderID, ProductID)
 );
 
 CREATE TABLE OrderDeliveries (
