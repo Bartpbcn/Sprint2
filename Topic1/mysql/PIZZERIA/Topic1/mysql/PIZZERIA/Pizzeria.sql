@@ -1,3 +1,4 @@
+CREATE DATABASE IF NOT EXISTS Pizzeria;
 USE Pizzeria;
 
 CREATE TABLE IF NOT EXISTS Addresses (
