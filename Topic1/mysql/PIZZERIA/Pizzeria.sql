@@ -1,6 +1,6 @@
 USE Pizzeria;
 
-CREATE TABLE IF NOT EXISTS Addresses(
+CREATE TABLE IF NOT EXISTS Addresses (
     AddressID INT AUTO_INCREMENT PRIMARY KEY,
     Street VARCHAR(255),
     Streetnumber INT,
@@ -20,17 +20,14 @@ CREATE TABLE IF NOT EXISTS Customers (
     AddressID INT,
     FOREIGN KEY(AddressID) REFERENCES Addresses(AddressID)
 );
-CREATE TABLE Orders (
+CREATE TABLE IF NOT EXISTS Orders (
     OrderID INT AUTO_INCREMENT PRIMARY KEY,
-    ProductID INT PRIMARY KEY,
-    Quantity INT,
+    CustomerID INT,
     OrderDateTime DATETIME,
     DeliveryType ENUM('home_delivery', 'pickup'),
     TotalPrice DECIMAL(10,2),
-    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
-    FOREIGN KEY (ProductID) REFERENCES Products(ProductID),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
-
 CREATE TABLE Products (
     ProductID INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(100),
@@ -46,12 +43,12 @@ CREATE TABLE IF NOT EXISTS Categories (
 );
 
 CREATE TABLE IF NOT EXISTS Pizzas (
-    ProductID INT PRIMARY KEY,
-    CategoryID INT PRIMARY KEY,
+    ProductID INT,
+    CategoryID INT,
     Name VARCHAR(50),
     FOREIGN KEY (ProductID) REFERENCES Products(ProductID),
-    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
-
+    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID),
+    PRIMARY KEY (ProductID, CategoryID)
 );
 
 CREATE TABLE Shops (
