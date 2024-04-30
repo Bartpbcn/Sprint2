@@ -72,10 +72,12 @@ CREATE TABLE IF NOT EXISTS Kitchenticket (
     OrderID INT,
     ProductID INT,
     Quantity INT,
+    CategoryID INT,
     Received_at TIMESTAMP,
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
     FOREIGN KEY (ProductID) REFERENCES Products(ProductID),
     PRIMARY KEY (OrderID, ProductID)
+    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID),
 );
 
 CREATE TABLE IF NOT EXISTS OrderDeliveries (
